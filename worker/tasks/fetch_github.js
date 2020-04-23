@@ -13,7 +13,9 @@ async function fetchGithub() {
 		const res = await fetch(`${baseURL}?page=${currPage}`);
 		const jobs = await res.json();
 
-		total_jobs.push(jobs);
+		// use spread operator
+		// fixes retrieval of array of arrays problem
+		total_jobs.push(...jobs);
 
 		console.log('retrieved', res_tracker, 'jobs');
 		currPage++;
@@ -22,10 +24,6 @@ async function fetchGithub() {
 	}
 
 	console.log('retrieved', total_jobs.length, 'total jobs');
-
-
-
-
 }
 
 fetchGithub();
